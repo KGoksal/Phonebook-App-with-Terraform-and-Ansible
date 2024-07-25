@@ -77,20 +77,20 @@
 
     - name: Enable remote login to mysql
       ansible.builtin.lineinfile:
-         path: /etc/mysql/mysql.conf.d/mysqld.cnf
-         regexp: '^bind-address'
-         line: 'bind-address = 0.0.0.0'
-         backup: yes
+         path: /etc/mysql/mysql.conf.d/mysqld.cnf  # Path to the MySQL configuration file.
+         regexp: '^bind-address'  # Search for the line starting with 'bind-address'.
+         line: 'bind-address = 0.0.0.0'  # Update the 'bind-address' to allow connections from any IP address.
+         backup: yes  # Create a backup of the configuration file before modifying it.
       notify:
-         - Restart mysql
+         - Restart mysql  # Notify the handler to restart MySQL service if this task changes the file.
+      # This task configures MySQL to accept remote connections by modifying the bind-address setting.
 
   handlers:
     - name: Restart mysql
       ansible.builtin.service:
         name: mysql
-        state: restarted
-
-
+        state: restarted  # Restart the MySQL service to apply configuration changes.
+      # This handler is triggered to restart the MySQL service after updating its configuration.
 
 
 
