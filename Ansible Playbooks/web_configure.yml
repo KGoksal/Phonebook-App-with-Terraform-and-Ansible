@@ -1,0 +1,50 @@
+- name: web server configuration
+  hosts: web_server  # Target the host group named 'web_server'.
+  vars:
+    hostname: cw_web_server  # Define the desired hostname for the server.
+
+  tasks:
+    - name: set hostname
+      become: yes  # Use sudo privileges to set the hostname.
+      ansible.builtin.shell: "hostnamectl set-hostname {{ hostname }}"
+      # This task sets the hostname of the server to 'cw_web_server' using the hostnamectl command.
+      # Ensures that the server is properly named for easier identification and management.
+
+    - name: Installing python for python app
+      become: yes  # Use sudo privileges to install packages.
+      ansible.builtin.package:
+        name:
+          - python3  # Install Python 3 interpreter.
+          - python3-pip  # Install pip for Python 3.
+        state: present  # Ensure the packages are installed.
+        update_cache: yes  # Update the package cache before installation.
+      # This task installs Python 3 and pip, which are required for running the Python application.
+
+    - name: copy the app file to the web server
+      ansible.builtin.copy:
+        src: /home/ubuntu/phonebook/phonebook-app.py  # Source path of the Python application on the control machine.
+        dest: ~/  # Destination path on the remote server (home directory of the user).
+      # This task copies the Python application script to the remote server's home directory.
+
+    - name: copy the requirements file to the web server
+      ansible.builtin.copy:
+        src: /home/ubuntu/phonebook/requirements.txt  # Source path of the requirements file on the control machine.
+        dest: ~/  # Destination path on the remote server (home directory of the user).
+      # This task copies the requirements file to the remote server's home directory.
+
+    - name: copy the templates folder to the web server
+      ansible.builtin.copy:
+        src: /home/ubuntu/phonebook/templates  # Source path of the templates folder on the control machine.
+        dest: ~/  # Destination path on the remote server (home directory of the user).
+      # This task copies the templates folder to the remote server's home directory.
+
+    - name: install dependencies from requirements file
+      become: yes  # Use sudo privileges to install Python packages.
+      ansible.builtin.pip:
+        requirements: /home/ubuntu/requirements.txt  # Path to the requirements file on the remote server.
+      # This task installs Python dependencies listed in the requirements file using pip.
+
+    - name: run the app
+      become: yes  # Use sudo privileges to run the application.
+      ansible.builtin.shell: "nohup python3 phonebook-app.py &"
+      # This task runs the Python application script in the background using nohup to ensure it keeps running after the session ends. it is like -d options in docker
