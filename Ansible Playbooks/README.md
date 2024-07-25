@@ -98,3 +98,38 @@ Replace `db_server_ip` with the IP address of your target server and `your_ssh_u
 - Ensure that you have the correct access rights to the target host and the repository.
 - Make sure to update the `init.sql` script path in the playbook if it is located in a different directory.
 - Review and adjust the variables and configurations according to your specific requirements.
+
+
+
+*************************************************
+
+
+
+# Web Server Configuration Playbook
+
+This Ansible playbook sets up a web server with a Python application. It targets hosts in the `web_server` group and performs the following tasks:
+
+1. **Set Hostname**: Configures the server hostname.
+2. **Install Python**: Installs Python 3 and pip.
+3. **Copy Application Files**: Transfers the Python application, requirements file, and templates to the server.
+4. **Install Dependencies**: Installs Python dependencies from the requirements file.
+5. **Run the Application**: Starts the Python application script.
+
+## Requirements
+
+- Ansible 2.9 or later
+- Python 3
+- SSH access to the target server
+
+## Playbook Details
+
+It performs the following tasks:
+
+- Sets the Server Hostname: Configures the server with a specified hostname for better identification.
+- Installs Python and Dependencies: Ensures Python 3 and pip are installed, which are necessary for running the application.
+- Transfers Application Files: Copies the Python application script, requirements file, and templates from the control machine to the server.
+- Installs Python Packages: Uses pip to install required Python libraries as listed in the requirements.txt.
+- Starts the Application: Runs the Python application in the background to ensure it continues operating after the session ends.
+
+  
+This playbook is designed to streamline the setup process for deploying Python applications on a web server, making it easier to manage and maintain the server environment.
