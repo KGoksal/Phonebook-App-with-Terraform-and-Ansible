@@ -55,6 +55,16 @@
       # This task creates a MySQL database named 'phonebook_db' if it does not already exist.
       # you can check data at mysql -> select * from phonebook;
 
+    - name: check if the database has the table
+      ansible.builtin.shell: |
+        echo "USE {{ db_name }}; show tables like '{{ db_table }}'; " | mysql
+      register: resultOfShowTables  # Register the result of the command to a variable.
+      # This task checks if the specified table exists in the 'phonebook_db' database.
+      # The result is stored in 'resultOfShowTables' for further processing.
+
+
+
+
 
 
 
