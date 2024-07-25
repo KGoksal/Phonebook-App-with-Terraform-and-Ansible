@@ -75,6 +75,20 @@
       when: resultOfShowTables.stdout == ""  # Conditionally execute this task only if the table does not already exist.
       # This task imports the SQL script into the database only if the specified table is not present. If you dont use when condition then you cannot replay this playbook again and again/you will get error.
 
+    - name: Enable remote login to mysql
+      ansible.builtin.lineinfile:
+         path: /etc/mysql/mysql.conf.d/mysqld.cnf
+         regexp: '^bind-address'
+         line: 'bind-address = 0.0.0.0'
+         backup: yes
+      notify:
+         - Restart mysql
+
+  handlers:
+    - name: Restart mysql
+      ansible.builtin.service:
+        name: mysql
+        state: restarted
 
 
 
