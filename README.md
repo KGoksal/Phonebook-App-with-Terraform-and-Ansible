@@ -6,7 +6,10 @@
 ## Overview
 
 This project consists of two Ansible playbooks designed to automate the setup and configuration of MySQL and a web server environment. Each playbook addresses different aspects of server configuration and application deployment:
-<img width="731" alt="Screenshot 2024-07-25 at 12 21 10 PM" src="https://github.com/user-attachments/assets/f41c436e-4eda-4e16-84a5-e8671ba26e97">
+
+
+<img width="675" alt="Screenshot 2024-07-25 at 2 19 58 PM" src="https://github.com/user-attachments/assets/2008fe13-5472-4722-8fd8-3e6e8062f131">
+
 
 1. **MySQL Configuration Playbook**: Automates the installation, setup, and configuration of a MySQL server.
 2. **Web Server Configuration Playbook**: Sets up a web server, installs Python, and deploys a Python application.
