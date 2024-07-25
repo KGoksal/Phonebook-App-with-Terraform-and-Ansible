@@ -1,0 +1,49 @@
+- name: db configuration
+  become: true  # (sudo privilige).
+  hosts: db_server  # The playbook will target the host group named 'db_server'.
+  vars:
+    hostname: db_server  # Define the desired hostname for the server.
+    db_name: phonebook_db  # Define the name of the database to be created.
+    db_table: phonebook  # Define the name of the table to be checked and created.
+    db_user: remoteUser  # Define the MySQL username to be created.
+    db_password: test1234  # Define the password for the MySQL user.
+
+  tasks:
+    - name: set hostname
+      ansible.builtin.shell: "hostnamectl set-hostname {{ hostname }}"
+      # Set the hostname of the server to 'db_server' using the hostnamectl command.
+      # This ensures the server is properly named for easier identification and management.
+
+    - name: Installing Mysql and dependencies
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      loop:
+        - mysql-server  # Install MySQL server package.
+        - mysql-client  # Install MySQL client package to interact with the server.
+        - python3-mysqldb  # Install Python MySQL library for database interaction in Python.
+        - libmysqlclient-dev  # Install MySQL client development libraries for compiling client applications.
+      # This task installs essential packages required for MySQL server setup and Python interaction.
+
+    - name: start and enable mysql service
+      ansible.builtin.service:
+        name: mysql
+        state: started  # Ensure MySQL service is started.
+        enabled: yes  # Ensure MySQL service is enabled to start on boot.
+      # This task starts the MySQL service and configures it to automatically start on system boot.
+
+    - name: creating mysql user
+      community.mysql.mysql_user:
+        name: "{{ db_user }}"  # Specify the MySQL username to be created.
+        password: "{{ db_password }}"  # Set the password for the new MySQL user.
+        priv: '*.*:ALL'  # Grant all privileges on all databases and tables to this user.
+        host: '%'  # Allow this user to connect from any host.
+        state: present  # Ensure the user is created if it does not already exist.
+      # This task creates a MySQL user with specified privileges and ensures the user exists.
+
+    - name: copy the sql script
+      ansible.builtin.copy:
+        src: /home/ubuntu/phonebook/init.sql  # Source path of the SQL script on the control machine.
+        dest: ~/  # Destination path on the remote server (home directory of the root user).
+      # This task copies the SQL initialization script to the remote server's home directory.
