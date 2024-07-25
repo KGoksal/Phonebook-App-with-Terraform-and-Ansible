@@ -47,3 +47,15 @@
         src: /home/ubuntu/phonebook/init.sql  # Source path of the SQL script on the control machine.
         dest: ~/  # Destination path on the remote server (home directory of the root user).
       # This task copies the SQL initialization script to the remote server's home directory.
+
+    - name: creating phonebook_db
+      community.mysql.mysql_db:
+        name: "{{ db_name }}"  # Specify the name of the database to be created.
+        state: present  # Ensure the database is created if it does not already exist.
+      # This task creates a MySQL database named 'phonebook_db' if it does not already exist.
+      # you can check data at mysql -> select * from phonebook;
+
+
+
+
+      
