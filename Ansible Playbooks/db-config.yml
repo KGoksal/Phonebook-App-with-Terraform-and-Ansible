@@ -62,6 +62,18 @@
       # This task checks if the specified table exists in the 'phonebook_db' database.
       # The result is stored in 'resultOfShowTables' for further processing.
 
+    - name: DEBUG
+      ansible.builtin.debug:
+        var: resultOfShowTables  # Output the value of 'resultOfShowTables' for debugging purposes.
+      # This task is used for debugging to check the result of the previous table check command.
+
+    - name: Import database table
+      community.mysql.mysql_db:
+        name: "{{ db_name }}"  # Specify the name of the database where the table will be imported.
+        state: import  # Import the SQL script into the database. 
+        target: ~/init.sql  # Path to the SQL script that creates the table.
+      when: resultOfShowTables.stdout == ""  # Conditionally execute this task only if the table does not already exist.
+      # This task imports the SQL script into the database only if the specified table is not present. If you dont use when condition then you cannot replay this playbook again and again/you will get error.
 
 
 
