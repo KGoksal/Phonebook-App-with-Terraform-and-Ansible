@@ -49,9 +49,9 @@ resource "aws_instance" "nodes" {
 }
 
 resource "aws_security_group" "tf-sec-gr" {
-  name = "ansible-lesson-sec-gr-${local.user}"
+  name = "ansible-sec-gr-${local.user}"
   tags = {
-    Name = "ansible-session-sec-gr-${local.user}"
+    Name = "ansible-sec-gr-${local.user}"
   }
 
   ingress {
