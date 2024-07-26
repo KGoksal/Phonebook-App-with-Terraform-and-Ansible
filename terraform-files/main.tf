@@ -19,7 +19,7 @@ provider "aws" {
 }
 
 locals {
-  user = "ec2-user"
+  user = "user"
 }
 
 data "aws_ami" "ubuntu" {
