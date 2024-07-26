@@ -22,19 +22,19 @@
 
     - name: copy the app file to the web server
       ansible.builtin.copy:
-        src: /home/ubuntu/phonebook/phonebook-app.py  # Source path of the Python application on the control machine.
+        src: /home/ubuntu/python/phonebook-app.py  # Source path of the Python application on the control machine.
         dest: ~/  # Destination path on the remote server (home directory of the user).
       # This task copies the Python application script to the remote server's home directory.
 
     - name: copy the requirements file to the web server
       ansible.builtin.copy:
-        src: /home/ubuntu/phonebook/requirements.txt  # Source path of the requirements file on the control machine.
+        src: /home/ubuntu/python/requirements.txt  # Source path of the requirements file on the control machine.
         dest: ~/  # Destination path on the remote server (home directory of the user).
       # This task copies the requirements file to the remote server's home directory.
 
     - name: copy the templates folder to the web server
       ansible.builtin.copy:
-        src: /home/ubuntu/phonebook/templates  # Source path of the templates folder on the control machine.
+        src: /home/ubuntu/html templates  # Source path of the templates folder on the control machine.
         dest: ~/  # Destination path on the remote server (home directory of the user).
       # This task copies the templates folder to the remote server's home directory.
 
