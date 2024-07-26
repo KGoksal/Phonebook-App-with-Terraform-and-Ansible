@@ -89,8 +89,7 @@ resource "null_resource" "config" {
     host = aws_instance.nodes[0].public_ip
     type = "ssh"
     user = "ubuntu"
-    private_key = file("/Users/kadirgoksl/Desktop/ssh/${var.mykey}.pem")
-    # Do not forget to define your key file path correctly!
+    private_key = file("./ssh/${var.mykey}.pem")     # Do not forget to define your key file path correctly!
   }
 
   provisioner "file" {
@@ -99,8 +98,7 @@ resource "null_resource" "config" {
   }
 
   provisioner "file" {
-    # Do not forget to define your key file path correctly!
-    source = "/Users/kadirgoksl/Desktop/ssh/${var.mykey}.pem"
+    source = "./ssh/${var.mykey}.pem"  # Do not forget to define your key file path correctly!
     destination = "/home/ubuntu/${var.mykey}.pem"
   }
 
