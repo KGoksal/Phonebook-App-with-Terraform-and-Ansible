@@ -46,15 +46,12 @@ Creates a MySQL user with the specified username, password, and privileges. The 
 Copies the SQL initialization script (`init.sql`) from the control machine to the remote server's home directory.
 
 ### 6. Create Database
-
 Creates a MySQL database with the specified name if it does not already exist.
 
 ### 7. Check for Existing Table
-
 Checks if the specified table exists in the database. The result is registered for further processing.
 
 ### 8. Import Database Table
-
 Imports the SQL script into the database only if the specified table does not already exist. This task is conditional based on the result of the table check.
 
 ### 9. Enable Remote Login
@@ -66,9 +63,7 @@ Updates the MySQL configuration file to allow remote connections by modifying th
 Restarts the MySQL service to apply the new configuration.
 
 ## Usage
-
  **Run the Playbook**
-
    Execute the playbook against your target host:
 
    ```
@@ -78,7 +73,6 @@ Restarts the MySQL service to apply the new configuration.
    Replace `inventory_file` with the path to your inventory file and `playbook.yml` with the filename of your playbook.
 
 ## Example Inventory File
-
 An example inventory file might look like this:
 
 ```ini
@@ -89,7 +83,6 @@ db_server_ip ansible_ssh_user=your_ssh_user
 Replace `db_server_ip` with the IP address of your target server and `your_ssh_user` with your SSH username.
 
 ## Notes
-
 - Ensure that you have the correct access rights to the target host and the repository.
 - Make sure to update the `init.sql` script path in the playbook if it is located in a different directory.
 - Review and adjust the variables and configurations according to your specific requirements.
@@ -101,7 +94,6 @@ Replace `db_server_ip` with the IP address of your target server and `your_ssh_u
 
 
 # Web Server Configuration Playbook
-
 This Ansible playbook sets up a web server with a Python application. It targets hosts in the `web_server` group and performs the following tasks:
 
 1. **Set Hostname**: Configures the server hostname.
@@ -111,13 +103,11 @@ This Ansible playbook sets up a web server with a Python application. It targets
 5. **Run the Application**: Starts the Python application script.
 
 ## Requirements
-
 - Ansible 2.9 or later
 - Python 3
 - SSH access to the target server
 
 ## Playbook Details
-
 It performs the following tasks:
 
 - Sets the Server Hostname: Configures the server with a specified hostname for better identification.
