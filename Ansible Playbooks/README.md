@@ -1,7 +1,5 @@
 # Ansible Playbook: MySQL Configuration
-
 ## Overview
-
 This Ansible playbook is designed to set up and configure a MySQL server on a target host. It performs the following tasks:
 - Sets the hostname of the server.
 - Installs MySQL and necessary dependencies.
@@ -34,33 +32,23 @@ Sets the hostname of the server to `db_server` using the `hostnamectl` command.
 Installs MySQL server, client, Python MySQL library, and MySQL client development libraries.
 
 ### 3. Start and Enable MySQL Service
-
 Starts the MySQL service and ensures it is enabled to start on boot.
 
 ### 4. Create MySQL User
-
 Creates a MySQL user with the specified username, password, and privileges. The user can connect from any host.
-
 ### 5. Copy SQL Script
-
 Copies the SQL initialization script (`init.sql`) from the control machine to the remote server's home directory.
-
 ### 6. Create Database
 Creates a MySQL database with the specified name if it does not already exist.
-
 ### 7. Check for Existing Table
 Checks if the specified table exists in the database. The result is registered for further processing.
-
 ### 8. Import Database Table
 Imports the SQL script into the database only if the specified table does not already exist. This task is conditional based on the result of the table check.
-
 ### 9. Enable Remote Login
-
 Updates the MySQL configuration file to allow remote connections by modifying the `bind-address` setting. A backup of the configuration file is created before making changes.
-
 ### 10. Restart MySQL Service
-
 Restarts the MySQL service to apply the new configuration.
+
 
 ## Usage
  **Run the Playbook**
