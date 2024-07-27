@@ -13,14 +13,12 @@ This Ansible playbook is designed to set up and configure a MySQL server on a ta
 - Configures MySQL to allow remote connections.
 
 ## Prerequisites
-
 - Ansible installed on your local machine.
 - Access to a target host that you want to configure as a MySQL server.
 - The target host should be accessible via SSH.
 - The target host should be running a Debian-based Linux distribution (e.g., Ubuntu).
 
 ## Variables
-
 The playbook uses the following variables:
 - `hostname`: Desired hostname for the server.
 - `db_name`: Name of the database to be created.
@@ -29,13 +27,10 @@ The playbook uses the following variables:
 - `db_password`: Password for the MySQL user.
 
 ## Tasks
-
 ### 1. Set Hostname
-
 Sets the hostname of the server to `db_server` using the `hostnamectl` command.
 
 ### 2. Install MySQL and Dependencies
-
 Installs MySQL server, client, Python MySQL library, and MySQL client development libraries.
 
 ### 3. Start and Enable MySQL Service
