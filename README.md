@@ -1,4 +1,3 @@
-
 # Ansible Playbooks: MySQL and Web Server Configuration
 <img width="833" alt="Screenshot 2024-07-25 at 12 11 08 PM" src="https://github.com/user-attachments/assets/02c132c4-904d-4e6b-b7eb-f05744c8bc11">
 
